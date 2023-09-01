@@ -1,0 +1,36 @@
+version: "3.3"
+services:
+  my_cuda_jupyter_lab:
+    build:
+      context: ../  #The root folder of the project
+      dockerfile: ./docker/Dockerfile
+      args:
+        WORKDIR_NAME: ${WORKDIR_NAME:-app}
+        PROJECTDIR_NAME: ${PROJECTDIR_NAME:-PROJECTDIR}
+    #image: text-generation-webui-image
+    env_file: .env
+    ports:
+      - "${HOST_JUPYTER_PORT:-7888}:${CONTAINER_JUPYTER_PORT:-8888}"
+      # - "${HOST_PORT:-7860}:${CONTAINER_PORT:-7860}"
+      # - "${HOST_API_PORT:-5000}:${CONTAINER_API_PORT:-5000}"
+      # - "${HOST_API_STREAM_PORT:-5005}:${CONTAINER_API_STREAM_PORT:-5005}"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../:/${WORKDIR_NAME}/${PROJECTDIR_NAME}  # relative path from current file (docker-compose.yml)
+      # - ./characters:/app/characters
+      # - ./extensions:/app/extensions
+      # - ./loras:/app/loras
+      # - ./models:/app/models
+      # - ./presets:/app/presets
+      # - ./prompts:/app/prompts
+      # - ./softprompts:/app/softprompts
+      # - ./training:/app/training
+      # - ./cloudflared:/etc/cloudflared
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
