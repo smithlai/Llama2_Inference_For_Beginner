@@ -1,4 +1,3 @@
-jupyterlab
 transformers
 accelerate
 einops
@@ -8,3 +7,6 @@ bitsandbytes
 faiss-gpu
 sentence_transformers
 pandas
+tqdm 
+langchain[llms]
+#llama_index
