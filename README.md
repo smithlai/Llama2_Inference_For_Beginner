@@ -8,55 +8,27 @@ Please refers to: [Ubuntu docker (WSL)](#ubuntu-docker-wsl)
 
 > console#1  
 `cd docker && docker compose up --build -d`
+`docker save -o docker-my_cuda_jupyter_lab.tar docker-my_cuda_jupyter_lab`
+__OR__
+`docker load -i docker-my_cuda_jupyter_lab.tar`
 
 > console#2  
 `docker exec -it my_cuda_jupyterlab-1 /entrypoint.sh bash`  
 
 
 ---------------------------------------------------
-
-
 ## Ubuntu docker (WSL)
-
-### install WSL and WSL Ubuntu
-```powershell
-#dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -All
-#dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -All
-#DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
-#dism.exe /online /enable-feature /featurename:Containers /all
-Enable-WindowsOptionalFeature -Online -FeatureName containers –All
-
-# bcdedit /set hypervisorlaunchtype auto
-
-wsl --install -d Ubuntu-22.04  #有時會發生錯誤，多試幾次
-wsl --status
-wsl --update #很重要，否則docker可能無法執行
-```
-https://download.docker.com/win/static/stable/x86_64/
-
-#### WSL ssh  
-https://www.cnblogs.com/ucos/p/16998981.html
-
-```sh
-sudo apt update
-sudo apt install ssh
-sudo vi /etc/ssh/sshd_config
-```
-> Port 44
-> ListenAddress 0.0.0.0
-> PermitRootLogin yes
-> PasswordAuthentication yes
-
-`sudo service ssh restart`
+Refers to [WSLSetup.md](./wsl/WSLSetup.md)
 
 ### Setup Docker in WSL
 
 auto install docker  
+`sudo ./docker/install_docker.sh`  
 
-`./docker/install_docker.sh`  
+**Remember to re-login**
+
+check docker cuda
+`docker run --rm --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi`
 
 __OR__
 
