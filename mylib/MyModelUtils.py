@@ -3,9 +3,11 @@ import transformers
 from langchain.llms import HuggingFacePipeline
 
 class MyModelUtils:
+    @classmethod
+    def device(cls):
+        return f'cuda:{cuda.current_device()}' if cuda.is_available() else 'cpu'
     def __init__(self, model_id):
         self.model_id = model_id
-        self.device = f'cuda:{cuda.current_device()}' if cuda.is_available() else 'cpu'
         self.default_modelconf_kwargs={k: v for k, v in {
             'do_sample':True,
             # stopping_criteria:stopping_criteria,  # without this model rambles during chat
