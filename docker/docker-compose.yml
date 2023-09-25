@@ -12,13 +12,13 @@ services:
         # WORKDIR_NAME: ${WORKDIR_NAME:-app}
         PROJECTDIR_NAME: ${PROJECTDIR_NAME:-Project}
         HOST_MODEL_PATH: ${HOST_MODEL_PATH:-.}
-        HOST_MODEL_1: ${HOST_MODEL_1:-.}
-        HOST_MODEL_2: ${HOST_MODEL_2:-.}
-        HOST_MODEL_3: ${HOST_MODEL_3:-.}
-        HOST_MODEL_4: ${HOST_MODEL_4:-.}
-        HOST_MODEL_5: ${HOST_MODEL_5:-.}
-        HOST_MODEL_6: ${HOST_MODEL_6:-.}
-        HOST_MODEL_a1: ${HOST_MODEL_a1:-.}
+        # HOST_MODEL_1: ${HOST_MODEL_1:-.}
+        # HOST_MODEL_2: ${HOST_MODEL_2:-.}
+        # HOST_MODEL_3: ${HOST_MODEL_3:-.}
+        # HOST_MODEL_4: ${HOST_MODEL_4:-.}
+        # HOST_MODEL_5: ${HOST_MODEL_5:-.}
+        # HOST_MODEL_6: ${HOST_MODEL_6:-.}
+        # HOST_MODEL_a1: ${HOST_MODEL_a1:-.}
         HOST_LORA_PATH: ${HOST_MODEL_PATH:-.}
         HOST_LORA_1: ${HOST_LORA_1:-.}
     #image: text-generation-webui-image
@@ -32,14 +32,15 @@ services:
     tty: true
     volumes:
       - ../:/app/${PROJECTDIR_NAME}  # relative path from current file (docker-compose.yml)
-      - ${HOST_MODEL_PATH}/${HOST_MODEL_1}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_1}
-      - ${HOST_MODEL_PATH}/${HOST_MODEL_2}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_2}
-      - ${HOST_MODEL_PATH}/${HOST_MODEL_3}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_3}
-      - ${HOST_MODEL_PATH}/${HOST_MODEL_4}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_4}
-      - ${HOST_MODEL_PATH}/${HOST_MODEL_5}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_5}
-      - ${HOST_MODEL_PATH}/${HOST_MODEL_6}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_6}
-      - ${HOST_MODEL_PATH}/${HOST_MODEL_a1}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_a1}
-      - ${HOST_LORA_PATH}/${HOST_LORA_1}:/app/${PROJECTDIR_NAME}/loras/${HOST_LORA_1}
+      - ${HOST_MODEL_PATH}/:/app/${PROJECTDIR_NAME}/models
+      # - ${HOST_MODEL_PATH}/${HOST_MODEL_1}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_1}
+      # - ${HOST_MODEL_PATH}/${HOST_MODEL_2}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_2}
+      # - ${HOST_MODEL_PATH}/${HOST_MODEL_3}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_3}
+      # - ${HOST_MODEL_PATH}/${HOST_MODEL_4}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_4}
+      # - ${HOST_MODEL_PATH}/${HOST_MODEL_5}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_5}
+      # - ${HOST_MODEL_PATH}/${HOST_MODEL_6}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_6}
+      # - ${HOST_MODEL_PATH}/${HOST_MODEL_TRANS}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_TRANS}
+      - ${HOST_LORA_PATH}/:/app/${PROJECTDIR_NAME}/loras
       
     deploy:
       resources:
