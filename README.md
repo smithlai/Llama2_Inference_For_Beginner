@@ -1,26 +1,88 @@
-# my_cuda_jupyterlab
+# Llama2_Inference_For_Beginner
 
+## Description
+This is a simple tutorial depends on Llama2 and LangChain for begginers like me.
+
+There are too many models/components/libraries to inference a LLM if you tried text-generation-webui before.
+
+I have too many questions about how it works and why I should use this?
+
+For example: 
+
+> llama2-*-hf? GGML? GGUF? GPTQ? Transformers, CTransformers, exllama, llama.cpp, gptq.....
+
+> Why there is no [INT] or \<\<SYS\>\> in text-generation-webui?
+
+> Can we use "User: " and "AI: " to replace Llama2 "[INST]"? If yes, what's the difference?
+
+> What is the instruction_template, chat-instruct_command
+
+> https://github.com/oobabooga/text-generation-webui/discussions/3644
+
+There are too many mystories in LLM, especially when the are wrapped in text-generation-ui or LangChain.
+
+As a result, I tried to start from scratch, step by step.
+
+This project is simple a record for studying and practicing, and still work in progress.
+
+**Note**: Some descriptions and comments are still written in Chinese
+
+
+-----------------------------------------------------------
+## prerequisite:
+
+1. Windows WSL2 + Ubuntu  
+   (Pure linux is not verified)
+  
+2. NVidia GPU and driver installed
+
+-----------------------------------------------------------
 
 ## Quick Start  
 
 **Ubuntu Docker**  
-Please refers to: [Ubuntu docker (WSL)](#ubuntu-docker-wsl)  
 
-> console#1  
-`cd docker && docker compose up --build -d`
-`docker save -o docker-my_cuda_jupyter_lab.tar docker-my_cuda_jupyter_lab`
-__OR__
-`docker load -i docker-my_cuda_jupyter_lab.tar`
+Please refers to: [Setup & Installation](#setup--installation)  
 
-> console#2  
-`docker exec -it my_cuda_jupyterlab-1 /entrypoint.sh bash`  
+
+**console#1**  
+modify the model folder path in **.env**
+```shell
+HOST_MODEL_PATH="~/llama2/llama2_models/"
+HOST_LORA_PATH="~/llama2_loras/"
+```
+We will mount the path folder into docker.
+
+`cd docker && docker compose up --build`  
+before open jupyterlab browser.
+
+**Optional: Load/Save**  
+You can save/load image like this:  
+`docker save -o docker-llama2_inference_for_beginner-1.tar docker-llama2_inference_for_beginner-1`  
+__AND__   
+`docker load -i docker-llama2_inference_for_beginner-1.tar`  
+
+And you can exec command here  
+**console#2**  
+
+`docker exec -it docker-llama2_inference_for_beginner-1 /entrypoint.sh bash`  
+
+**Note**:  
+if you want pip install anything in console, make sure to source `. /app/venv/bin/activate` first  
 
 
 ---------------------------------------------------
-## Ubuntu docker (WSL)
-Refers to [WSLSetup.md](./wsl/WSLSetup.md)
+## Setup & Installation
 
-### Setup Docker in WSL
+### Setup cuda
+  If you are WSL, refers to [WSLSetup.md](./wsl/WSLSetup.md)
+
+  If you atr Linux, install NV driver and CUDA:  
+  https://www.nvidia.com/download/index.aspx  
+  https://developer.nvidia.com/cuda-downloads  
+
+
+### Setup Docker
 
 auto install docker  
 `sudo ./docker/install_docker.sh`  
@@ -32,7 +94,7 @@ check docker cuda
 
 __OR__
 
----------- Deprecated, for inference only -------------
+---------- Deprecated, for inference only -------------  
 https://docs.docker.com/engine/install/ubuntu/
 ```sh
 sudo apt update

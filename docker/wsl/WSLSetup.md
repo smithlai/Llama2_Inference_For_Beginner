@@ -21,9 +21,10 @@ Enable-WindowsOptionalFeature -Online -FeatureName containers –All
 ### Install Ubuntu
 ```powershell
 # Administrator mode
-wsl --install -d Ubuntu-22.04  #有時會發生錯誤，多試幾次
+wsl --update # make sure you have latest wsl
+wsl --install -d Ubuntu-22.04  # you may have to try many times
 wsl --status
-wsl --update #很重要，否則docker可能無法執行
+
 ```
 
 If there's any problem, try `wsl --shutdown` to restart.
@@ -32,7 +33,7 @@ __OR__
 try `wsl --unregister Ubuntu-22.04` to remove previous failed install/uninstall
 
 ### WSL ssh  (in Ubuntu shell)
-WSL的SSH跟真的ubuntu不太一樣，不是openssh
+the SSH in WSL2 ubuntu is not openssh.
 https://www.cnblogs.com/ucos/p/16998981.html
 
 ```sh
@@ -51,7 +52,7 @@ sudo vi /etc/ssh/sshd_config
 1. Driver+Cuda
 https://docs.nvidia.com/cuda/wsl-user-guide/index.html#getting-started-with-cuda-on-wsl
 Install Windows Driver will also install WSL2 Driver (nvidia-smi)
-So **DO NOT install derver in WSL2**
+So **DO NOT install ANY derver in WSL2**
 
 2. Cuda in WSL
 https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_local
