@@ -45,6 +45,7 @@ apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 if is_sudo_user; then
     echo "*** Adding user $SUDO_USER to Docker... ***"
     usermod -aG docker $SUDO_USER
+    newgrp docker
 fi
 
 
