@@ -23,7 +23,7 @@
 #     python3 setup_cuda.py bdist_wheel -d .
 
 # ==== Image2: Our Working Docker ====
-FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04
+FROM nvidia/cuda:12.2.0-runtime-ubuntu22.04
 
 LABEL maintainer="SmithLai <smith_lai@usiglobal.com>"
 LABEL description="Docker image for normal LLM test"

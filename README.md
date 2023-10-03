@@ -44,9 +44,10 @@ This project is simple a record for studying and practicing, and still work in p
 
 Please refers to: [Setup & Installation](#setup--installation)  
 
+Modify the model folder path in **.env**
 
 **console#1**  
-modify the model folder path in **.env**
+
 ```shell
 HOST_MODEL_PATH="~/llama2/llama2_models/"
 HOST_LORA_PATH="~/llama2_loras/"
@@ -54,7 +55,7 @@ HOST_LORA_PATH="~/llama2_loras/"
 We will mount the path folder into docker.
 
 `cd docker && docker compose up --build`  
-before open jupyterlab browser.
+before open jupyterlab browser (127.0.0.1:7888).
 
 **Optional: Load/Save**  
 You can save/load image like this:  
@@ -90,7 +91,7 @@ auto install docker
 **Remember to re-login**
 
 check docker cuda
-`docker run --rm --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi`
+`docker run --rm --gpus all nvidia/cuda:12.2.0-base-ubuntu22.04 nvidia-smi`
 
 __OR__
 
