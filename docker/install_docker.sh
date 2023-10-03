@@ -45,7 +45,7 @@ apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 if is_sudo_user; then
     echo "*** Adding user $SUDO_USER to Docker... ***"
     usermod -aG docker $SUDO_USER
-    newgrp docker
+    # newgrp docker <--This will cut off all scripts later
 fi
 
 
@@ -66,6 +66,7 @@ echo "*** Installing nvidia-container-toolkit... ***"
 # we need nvidia-container-runtime-hook to enable docker GPU
 # You have to restart docker to make effect
 # Or we will get "docker: Error response from daemon: could not select device driver “” with capabilities: [[gpu]]."
+#                         Error response from daemon: could not select device driver "nvidia" with capabilities: [[gpu]]
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
   && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
     sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \

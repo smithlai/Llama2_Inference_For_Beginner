@@ -21,7 +21,7 @@ There are too many mystories in LLM, especially when the are wrapped in text-gen
 
 As a result, I tried to start from scratch, step by step.
 
-This project is simple a record for studying and practicing, and still work in progress.
+This project is merely a simple record for studying and practicing, and still work in progress.
 
 **Note**: Some descriptions and comments are still written in Chinese
 
@@ -30,9 +30,10 @@ This project is simple a record for studying and practicing, and still work in p
 ## prerequisite:
 
 1. Windows WSL2 + Ubuntu  
-   (Pure linux is not verified)
+   _OR_
+   Ubuntu
   
-2. NVidia GPU and driver installed
+2. NVidia GPU w/ driver installed
 
 -----------------------------------------------------------
 
@@ -44,7 +45,8 @@ Please refers to: [Setup & Installation](#setup--installation)
 
 
 **console#1**  
-modify the model folder path in **.env**
+modify the model folder path in **.env**  
+Example:
 ```shell
 HOST_MODEL_PATH="~/llama2/llama2_models/"
 HOST_LORA_PATH="~/llama2_loras/"
@@ -68,14 +70,13 @@ And you can exec command here
 **Note**:  
 if you want pip install anything in console, make sure to source `. /app/venv/bin/activate` first  
 
-docker run -it --rm -v ~/llama2/my_cuda_jupyterlab/:/app/project -v ~/llama2/llama2_models/:/app/project/models -p 7888:8888  docker-my_cuda_jupyter_lab
 ---------------------------------------------------
 ## Setup & Installation
 
 ### Setup cuda
   If you are WSL, refers to [WSLSetup.md](./wsl/WSLSetup.md)
 
-  If you atr Linux, install NV driver and CUDA:  
+  If you are Linux, install NV driver and CUDA:  
   https://www.nvidia.com/download/index.aspx  
   https://developer.nvidia.com/cuda-downloads  
 
