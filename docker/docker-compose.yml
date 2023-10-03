@@ -42,10 +42,10 @@ services:
       # - ${HOST_MODEL_PATH}/${HOST_MODEL_TRANS}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_TRANS}
       - ${HOST_LORA_PATH}/:/app/${PROJECTDIR_NAME}/loras
       
-    # deploy:
-    #   resources:
-    #     reservations:
-    #       devices:
-    #         - driver: nvidia
-    #           device_ids: ['0']
-    #           capabilities: [gpu]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]

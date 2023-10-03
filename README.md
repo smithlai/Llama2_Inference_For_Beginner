@@ -9,15 +9,13 @@ I have too many questions about how it works and why I should use this?
 
 For example: 
 
-> llama2-*-hf? GGML? GGUF? GPTQ? Transformers, CTransformers, exllama, llama.cpp, gptq.....
-
-> Why there is no [INT] or \<\<SYS\>\> in text-generation-webui?
-
-> Can we use "User: " and "AI: " to replace Llama2 "[INST]"? If yes, what's the difference?
-
-> What is the instruction_template, chat-instruct_command
-
-> https://github.com/oobabooga/text-generation-webui/discussions/3644
+*hf? GGML? GGUF? GPTQ? Transformers, CTransformers, exllama, llama.cpp, gptq.....*  
+*Why there is no [INT] or \<\<SYS\>\> in text-generation-webui?*  
+*Can we use "User: " and "AI: " to replace Llama2 "[INST]"? If yes, what's the difference*  
+*What is the instruction_template, chat-instruct_command?*  
+*https://github.com/oobabooga/text-generation-webui/discussions/3644*  
+......
+.......
 
 There are too many mystories in LLM, especially when the are wrapped in text-generation-ui or LangChain.
 
@@ -44,10 +42,9 @@ This project is simple a record for studying and practicing, and still work in p
 
 Please refers to: [Setup & Installation](#setup--installation)  
 
-Modify the model folder path in **.env**
 
 **console#1**  
-
+modify the model folder path in **.env**
 ```shell
 HOST_MODEL_PATH="~/llama2/llama2_models/"
 HOST_LORA_PATH="~/llama2_loras/"
@@ -71,7 +68,7 @@ And you can exec command here
 **Note**:  
 if you want pip install anything in console, make sure to source `. /app/venv/bin/activate` first  
 
-
+docker run -it --rm -v ~/llama2/my_cuda_jupyterlab/:/app/project -v ~/llama2/llama2_models/:/app/project/models -p 7888:8888  docker-my_cuda_jupyter_lab
 ---------------------------------------------------
 ## Setup & Installation
 
