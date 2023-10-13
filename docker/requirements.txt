@@ -9,4 +9,4 @@ sentence_transformers
 pandas
 tqdm 
 langchain[llms]
-#llama_index
+deeplake
