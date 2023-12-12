@@ -43,7 +43,7 @@ WORKDIR /app
 RUN virtualenv /app/venv
 RUN . /app/venv/bin/activate && \
     pip3 install --upgrade pip setuptools wheel && \
-    pip3 install torch torchvision torchaudio && \
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
     pip3 install jupyterlab ipywidgets
 
 # COPY --from=builder /build /app/repositories/GPTQ-for-LLaMa

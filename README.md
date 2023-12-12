@@ -54,6 +54,7 @@ HOST_LORA_PATH="~/llama2_loras/"
 We will mount the path folder into docker.
 
 `cd docker && docker compose up --build`  
+(This may take half an hour to download and build)
 before open jupyterlab browser (127.0.0.1:7888).
 
 **Optional: Load/Save**  

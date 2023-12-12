@@ -9,4 +9,6 @@ sentence_transformers
 pandas
 tqdm 
 langchain[llms]
+ctransformers[cuda]
 deeplake
+python-dotenv
