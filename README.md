@@ -66,7 +66,7 @@ __AND__
 And you can exec command here  
 **console#2**  
 
-`docker exec -it docker-llama2_inference_for_beginner-1 /entrypoint.sh bash`  
+`docker exec -it docker-llama2_inference_for_beginner-1 bash`  
 
 **Note**:  
 if you want pip install anything in console, make sure to source `. /app/venv/bin/activate` first  
