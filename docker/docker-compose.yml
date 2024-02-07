@@ -2,45 +2,24 @@ version: "3.3"
 services:
   llama2_inference_for_beginner:
     build:
-      # context: ../  
-      # dockerfile: ./docker/Dockerfile 
-      context: ./  # The base project path. to fasten speed,we don't set to parent folder.
-      dockerfile: ./Dockerfile # The Dockerfile name
+      context: ../  # The base project path. to fasten speed,we don't set to parent folder.
+      dockerfile: ./docker/Dockerfile  # The Dockerfile name
+      # context: ./  # The base project path. to fasten speed,we don't set to parent folder.
+      # dockerfile: ./Dockerfile # The Dockerfile name
       args:
-        # TORCH_CUDA_ARCH_LIST: ${TORCH_CUDA_ARCH_LIST:-7.5}
-        # WEBUI_VERSION: ${WEBUI_VERSION:-HEAD}
-        # WORKDIR_NAME: ${WORKDIR_NAME:-app}
-        PROJECTDIR_NAME: ${PROJECTDIR_NAME:-Project}
-        HOST_MODEL_PATH: ${HOST_MODEL_PATH:-.}
-        # HOST_MODEL_1: ${HOST_MODEL_1:-.}
-        # HOST_MODEL_2: ${HOST_MODEL_2:-.}
-        # HOST_MODEL_3: ${HOST_MODEL_3:-.}
-        # HOST_MODEL_4: ${HOST_MODEL_4:-.}
-        # HOST_MODEL_5: ${HOST_MODEL_5:-.}
-        # HOST_MODEL_6: ${HOST_MODEL_6:-.}
-        # HOST_MODEL_a1: ${HOST_MODEL_a1:-.}
-        HOST_LORA_PATH: ${HOST_MODEL_PATH:-.}
-        HOST_LORA_1: ${HOST_LORA_1:-.}
-    #image: text-generation-webui-image
+        PROJECTDIR_NAME: ${PROJECTDIR_NAME:-project_src}
+        # HOST_MODEL_PATH: ${HOST_MODEL_PATH:-.}
+        # HOST_LORA_PATH: ${HOST_MODEL_PATH:-.}
+        # HOST_LORA_1: ${HOST_LORA_1:-.}
+    #image: custom-image name
     env_file: .env
-    ports:
-      - "${HOST_JUPYTER_PORT:-7888}:${CONTAINER_JUPYTER_PORT:-8888}"
-      # - "${HOST_PORT:-7860}:${CONTAINER_PORT:-7860}"
-      # - "${HOST_API_PORT:-5000}:${CONTAINER_API_PORT:-5000}"
-      # - "${HOST_API_STREAM_PORT:-5005}:${CONTAINER_API_STREAM_PORT:-5005}"
+    network_mode: host
     stdin_open: true
     tty: true
     volumes:
       - ../:/app/${PROJECTDIR_NAME}  # relative path from current file (docker-compose.yml)
-      - ${HOST_MODEL_PATH}/:/app/${PROJECTDIR_NAME}/models
-      # - ${HOST_MODEL_PATH}/${HOST_MODEL_1}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_1}
-      # - ${HOST_MODEL_PATH}/${HOST_MODEL_2}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_2}
-      # - ${HOST_MODEL_PATH}/${HOST_MODEL_3}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_3}
-      # - ${HOST_MODEL_PATH}/${HOST_MODEL_4}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_4}
-      # - ${HOST_MODEL_PATH}/${HOST_MODEL_5}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_5}
-      # - ${HOST_MODEL_PATH}/${HOST_MODEL_6}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_6}
-      # - ${HOST_MODEL_PATH}/${HOST_MODEL_TRANS}:/app/${PROJECTDIR_NAME}/models/${HOST_MODEL_TRANS}
-      - ${HOST_LORA_PATH}/:/app/${PROJECTDIR_NAME}/loras
+      # - ${HOST_MODEL_PATH}/:/app/${PROJECTDIR_NAME}/models
+      # - ${HOST_LORA_PATH}/:/app/${PROJECTDIR_NAME}/loras
       
     deploy:
       resources:

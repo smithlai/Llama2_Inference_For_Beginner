@@ -82,5 +82,5 @@ systemctl restart docker
 echo "*** DONE ***"
 
 echo "****************** NOTE **********************"
-echo "YOU Have to RE-LOGIN to make the docker user/group take effect"
+echo "YOU Have to RE-LOGIN or `newgrp docker` to make the docker user/group take effect"
 echo "****************** NOTE **********************"

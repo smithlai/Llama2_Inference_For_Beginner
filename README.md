@@ -1,30 +1,37 @@
 # Llama2_Inference_For_Beginner
 
 ## Description
-This is a simple tutorial depends on Llama2 and LangChain for begginers like me.
+This is original for Llama2 inference and langchain study.
+But now the container will be used as a Jupyterlab platform for general LLM study and testing
 
-There are too many models/components/libraries to inference a LLM if you tried text-generation-webui before.
+You can download models from https://huggingface.co/models before start.
+or inference models with Ollama
 
-I have too many questions about how it works and why I should use this?
-
-For example: 
-
-*hf? GGML? GGUF? GPTQ? Transformers, CTransformers, exllama, llama.cpp, gptq.....*  
-*Why there is no [INT] or \<\<SYS\>\> in text-generation-webui?*  
-*Can we use "User: " and "AI: " to replace Llama2 "[INST]"? If yes, what's the difference*  
-*What is the instruction_template, chat-instruct_command?*  
-*https://github.com/oobabooga/text-generation-webui/discussions/3644*  
-......
-.......
-
-There are too many mystories in LLM, especially when the are wrapped in text-generation-ui or LangChain.
-
-As a result, I tried to start from scratch, step by step.
-
-This project is merely a simple record for studying and practicing, and still work in progress.
-
-**Note**: Some descriptions and comments are still written in Chinese
-
+> **Old Description**
+> This is a simple tutorial depends on Llama2 and LangChain for begginers like me.
+> 
+> There are too many models/components/libraries to inference a LLM if you tried text-generation-webui before.
+> 
+> I have too many questions about how it works and why I should use this?
+> 
+> For example: 
+> 
+> *hf? GGML? GGUF? GPTQ? Transformers, CTransformers, exllama, llama.cpp, gptq.....*  
+> *Why there is no [INT] or \<\<SYS\>\> in text-generation-webui?*  
+> *Can we use "User: " and "AI: " to replace Llama2 "[INST]"? If yes, what's the difference*  
+> *What is the instruction_template, chat-instruct_command?*  
+> *https://github.com/oobabooga/text-generation-webui/discussions/3644*  
+> ......
+> .......
+> 
+> There are too many mystories in LLM, especially when the are wrapped in text-generation-ui or LangChain.
+> 
+> As a result, I tried to start from scratch, step by step.
+> 
+> This project is merely a simple record for studying and practicing, and still work in progress.
+> 
+> **Note**: Some descriptions and comments are still written in Chinese
+> 
 
 -----------------------------------------------------------
 ## prerequisite:
@@ -44,18 +51,14 @@ This project is merely a simple record for studying and practicing, and still wo
 Please refers to: [Setup & Installation](#setup--installation)  
 
 
-**console#1**  
-modify the model folder path in **.env**  
-Example:
-```shell
-HOST_MODEL_PATH="~/llama2/llama2_models/"
-HOST_LORA_PATH="~/llama2_loras/"
-```
-We will mount the path folder into docker.
-
+**docker setup**  
 `cd docker && docker compose up --build`  
 (This may take half an hour to download and build)
-before open jupyterlab browser (127.0.0.1:7888).
+before open jupyterlab browser (127.0.0.1:8888).
+
+**Note**:  
+1. if you want pip install anything in console, make sure to source `. /app/venv/bin/activate` first  
+2. if you want mount volume, `docker [compsose] run -v /host_path:/mount_path llama2_inference_for_beginner`
 
 **Optional: Load/Save**  
 You can save/load image like this:  
@@ -63,13 +66,6 @@ You can save/load image like this:
 __AND__   
 `docker load -i docker-llama2_inference_for_beginner-1.tar`  
 
-And you can exec command here  
-**console#2**  
-
-`docker exec -it docker-llama2_inference_for_beginner-1 bash`  
-
-**Note**:  
-if you want pip install anything in console, make sure to source `. /app/venv/bin/activate` first  
 
 ---------------------------------------------------
 ## Setup & Installation

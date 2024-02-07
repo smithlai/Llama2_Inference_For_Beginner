@@ -22,7 +22,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName containers –All
 ```powershell
 # Administrator mode
 wsl --update # make sure you have latest wsl
-wsl --install -d Ubuntu-22.04  # you may have to try many times
+wsl --install -d Ubuntu-22.04  # you may have to retry many times
 wsl --status
 
 ```

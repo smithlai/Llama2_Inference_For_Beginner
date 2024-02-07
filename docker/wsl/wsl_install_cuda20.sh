@@ -23,15 +23,15 @@ wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/
 
 mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
 
-FILE=cuda-repo-wsl-ubuntu-12-2-local_12.2.2-1_amd64.deb
+FILE=cuda-repo-wsl-ubuntu-12-3-local_12.3.2-1_amd64.deb
 if [ ! -f "$FILE" ]; then
-    wget https://developer.download.nvidia.com/compute/cuda/12.2.2/local_installers/"$FILE"
+    wget https://developer.download.nvidia.com/compute/cuda/12.3.2/local_installers/"$FILE"
 fi
-dpkg -i cuda-repo-wsl-ubuntu-12-2-local_12.2.2-1_amd64.deb
-cp -f /var/cuda-repo-wsl-ubuntu-12-2-local/cuda-*-keyring.gpg /usr/share/keyrings/
+dpkg -i $FILE
+cp -f /var/cuda-repo-wsl-ubuntu-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
 apt update
 echo "*** Installing Cuda... ***"
-apt install -y cuda
+apt install -y cuda-toolkit-12-3
 # echo "*** Installing nvidia-cuda-toolkit ... ***"
 # sudo apt install -y nvidia-cuda-toolkit #(不需要)
 # sudo apt install nvidia-utils-535 #(不需要)

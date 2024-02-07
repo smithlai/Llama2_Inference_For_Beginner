@@ -30,34 +30,29 @@ LABEL description="Docker image for normal LLM test"
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y python3-dev git python3 python3-pip && \
-    apt-get install --no-install-recommends -y make g++ libportaudio2 libasound-dev && \
+    apt-get install --no-install-recommends -y make g++ libportaudio2 libasound-dev curl && \
     rm -rf /var/lib/apt/lists/*
 
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install virtualenv
 # RUN mkdir /app
 WORKDIR /app
 
-# ARG WEBUI_VERSION
-# RUN test -n "${WEBUI_VERSION}" && git reset --hard ${WEBUI_VERSION} || echo "Using provided webui source"
 
 RUN virtualenv /app/venv
 RUN . /app/venv/bin/activate && \
     pip3 install --upgrade pip setuptools wheel && \
-    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
-    pip3 install jupyterlab ipywidgets
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 # COPY --from=builder /build /app/repositories/GPTQ-for-LLaMa
 # RUN . /app/venv/bin/activate && \
 #     pip3 install /app/repositories/GPTQ-for-LLaMa/*.whl
 
 
-COPY ./requirements.txt ./launch-jupyterlab.sh /app/
+COPY ./requirement.txt ./docker/launch-jupyterlab.sh /app/
 RUN . /app/venv/bin/activate && \
-    pip3 install -r /app/requirements.txt
-
-# RUN cp /app/venv/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda118.so /app/venv/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so
-
-RUN  chmod u+x /app/launch-jupyterlab.sh
+    pip3 install -r /app/requirement.txt && \
+    curl https://ollama.ai/install.sh | sh && \
+    chmod u+x /app/launch-jupyterlab.sh
 # ENV CLI_ARGS=""
 # CMD . /app/venv/bin/activate && python3 server.py ${CLI_ARGS}
 CMD ./launch-jupyterlab.sh
