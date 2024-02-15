@@ -18,6 +18,7 @@ services:
     tty: true
     volumes:
       - ../:/app/${PROJECTDIR_NAME}  # relative path from current file (docker-compose.yml)
+      - ../.ollama:/root/.ollama
       # - ${HOST_MODEL_PATH}/:/app/${PROJECTDIR_NAME}/models
       # - ${HOST_LORA_PATH}/:/app/${PROJECTDIR_NAME}/loras
       
