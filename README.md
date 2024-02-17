@@ -71,7 +71,7 @@ __AND__
 ## Setup & Installation
 
 ### Setup cuda
-  If you are WSL, refers to [WSLSetup.md](./wsl/WSLSetup.md)
+  If you are WSL, refers to [WSLSetup.md](./docker/wsl/WSLSetup.md)
 
   If you are Linux, install NV driver and CUDA:  
   https://www.nvidia.com/download/index.aspx  
